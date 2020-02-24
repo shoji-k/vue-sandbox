@@ -2,7 +2,7 @@
   <v-form ref="form" v-model="valid" lazy-validation>
     <v-text-field
       v-model="announce"
-      :counter="10"
+      :counter="100"
       :rules="announceRules"
       label="Announce"
       required
