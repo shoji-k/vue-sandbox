@@ -18,11 +18,10 @@
 
 <script>
 export default {
-  data: () => ({
-    announces: [
-      { id: 1, text: "Just do it", icon: "mdi-check-outline" },
-      { id: 2, text: "You Just do it", icon: "mdi-check-outline" }
-    ]
-  })
+  computed: {
+    announces() {
+      return this.$store.getters["announces/getList"];
+    }
+  }
 };
 </script>
