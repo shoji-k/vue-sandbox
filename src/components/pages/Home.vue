@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import Announces from "@/components/organisms/Announces/list";
+import Announces from "@/components/organisms/Announces/List";
 
 export default {
   components: {
