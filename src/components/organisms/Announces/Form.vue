@@ -1,0 +1,38 @@
+<template>
+  <v-form ref="form" v-model="valid" lazy-validation>
+    <v-text-field
+      v-model="announce"
+      :counter="10"
+      :rules="announceRules"
+      label="Announce"
+      required
+      class="py-2"
+    ></v-text-field>
+
+    <v-btn :disabled="!valid" color="success" class="mr-4" @click="validate">
+      Save
+    </v-btn>
+  </v-form>
+</template>
+
+<script>
+export default {
+  data: () => ({
+    valid: true,
+    announce: ""
+  }),
+  methods: {
+    validate() {
+      if (this.$refs.form.validate()) {
+        alert("save");
+      }
+    }
+  },
+  created() {
+    this.announceRules = [
+      v => !!v || "Announce is required",
+      v => (v && v.length <= 100) || "Announce must be less than 100 characters"
+    ];
+  }
+};
+</script>

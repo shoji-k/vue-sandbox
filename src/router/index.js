@@ -1,6 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "@/components/pages/Home.vue";
+import Home from "@/components/pages/Home";
 
 Vue.use(VueRouter);
 
@@ -17,7 +17,15 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () =>
-      import(/* webpackChunkName: "about" */ "@/components/pages/About.vue")
+      import(/* webpackChunkName: "about" */ "@/components/pages/About")
+  },
+  {
+    path: "/announces",
+    name: "AnnounceForm",
+    component: () =>
+      import(
+        /* webpackChunkName: "announces-form" */ "@/components/organisms/Announces/Form"
+      )
   }
 ];
 

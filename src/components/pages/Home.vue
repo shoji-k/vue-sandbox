@@ -2,7 +2,7 @@
   <div>
     <Announces />
     <div>
-      <v-btn>Add</v-btn>
+      <v-btn :to="{ name: 'AnnounceForm' }">Add</v-btn>
     </div>
   </div>
 </template>
