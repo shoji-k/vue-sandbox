@@ -24,7 +24,8 @@ export default {
   methods: {
     validate() {
       if (this.$refs.form.validate()) {
-        alert("save");
+        this.$store.dispatch("announces/create", this.announce);
+        this.$router.push({ name: "Home" });
       }
     }
   },
