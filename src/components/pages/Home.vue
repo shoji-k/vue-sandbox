@@ -1,11 +1,15 @@
 <template>
-  <div class="home">
-    home
+  <div>
+    <Announces />
   </div>
 </template>
 
 <script>
+import Announces from "@/components/organisms/Announces";
+
 export default {
-  name: "Home"
+  components: {
+    Announces
+  }
 };
 </script>
