@@ -1,3 +1,5 @@
+![](https://github.com/shoji-k/vue-sandbox/workflows/e2e%20test/badge.svg)
+
 # vue-sandbox
 
 This is created by vue create.  
