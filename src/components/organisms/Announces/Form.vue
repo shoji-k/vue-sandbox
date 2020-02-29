@@ -9,7 +9,7 @@
       class="py-2"
     ></v-text-field>
 
-    <v-btn :disabled="!valid" color="success" class="mr-4" @click="validate">
+    <v-btn :disabled="!valid" color="success" class="mr-4" @click="save">
       Save
     </v-btn>
   </v-form>
@@ -22,7 +22,7 @@ export default {
     announce: ""
   }),
   methods: {
-    validate() {
+    save() {
       if (this.$refs.form.validate()) {
         this.$store.dispatch("announces/create", this.announce);
         this.$router.push({ name: "Home" });
