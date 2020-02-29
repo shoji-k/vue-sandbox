@@ -1,19 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar app color="primary" dark>
-      <div class="headline">
-        <v-btn text :to="{ name: 'Home' }">
-          Vue sandbox
-        </v-btn>
-      </div>
-
-      <v-spacer></v-spacer>
-
-      <v-btn text :to="{ name: 'About' }">
-        About
-      </v-btn>
-    </v-app-bar>
-
+    <Header />
     <v-content>
       <v-container fluid class="pa-6">
         <router-view />
@@ -21,3 +8,17 @@
     </v-content>
   </v-app>
 </template>
+
+<script>
+import Header from "@/components/organisms/Header";
+import { mapGetters } from "vuex";
+
+export default {
+  components: {
+    Header
+  },
+  computed: {
+    ...mapGetters({ name: "session/name" })
+  }
+};
+</script>

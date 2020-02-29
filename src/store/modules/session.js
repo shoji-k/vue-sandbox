@@ -10,8 +10,11 @@ const getters = {
 };
 
 const actions = {
-  async login({ commit }, { name }) {
+  login({ commit }, { name }) {
     commit("login", name);
+  },
+  logout({ commit }) {
+    commit("logout");
   }
 };
 
@@ -19,6 +22,10 @@ const mutations = {
   login(state, name) {
     state.name = name;
     state.logined = true;
+  },
+  logout(state) {
+    state.name = "";
+    state.logined = false;
   }
 };
 
