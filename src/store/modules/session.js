@@ -4,6 +4,9 @@ const state = {
 };
 
 const getters = {
+  logined: state => {
+    return state.logined;
+  },
   name: state => {
     return state.name;
   }

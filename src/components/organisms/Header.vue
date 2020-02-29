@@ -8,9 +8,10 @@
 
     <v-spacer></v-spacer>
 
-    <div v-if="name">
+    <div v-if="logined">
       {{ name }} <v-icon @click="logout">mdi-logout</v-icon>
     </div>
+    <v-btn text v-else :to="{ name: 'Login' }">Login</v-btn>
 
     <v-btn text :to="{ name: 'About' }">
       About
@@ -23,7 +24,10 @@ import { mapGetters } from "vuex";
 
 export default {
   computed: {
-    ...mapGetters({ name: "session/name" })
+    ...mapGetters({
+      name: "session/name",
+      logined: "session/logined"
+    })
   },
   methods: {
     logout() {
