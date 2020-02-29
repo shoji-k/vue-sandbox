@@ -17,11 +17,11 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   computed: {
-    announces() {
-      return this.$store.getters["announces/getList"];
-    }
+    ...mapGetters({ announces: "announces/getList" })
   }
 };
 </script>
