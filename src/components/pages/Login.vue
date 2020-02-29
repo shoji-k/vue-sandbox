@@ -8,6 +8,7 @@
               v-model="name"
               :rules="nameRule"
               label="Name"
+              name="name"
               required
             ></v-text-field>
           </v-col>
@@ -18,6 +19,7 @@
               v-model="password"
               :rules="passwordRule"
               label="Password"
+              name="password"
               required
             ></v-text-field>
           </v-col>
