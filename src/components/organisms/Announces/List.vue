@@ -21,7 +21,7 @@ import { mapGetters } from "vuex";
 
 export default {
   computed: {
-    ...mapGetters({ announces: "announces/getList" })
+    ...mapGetters({ announces: "announces/list" })
   }
 };
 </script>

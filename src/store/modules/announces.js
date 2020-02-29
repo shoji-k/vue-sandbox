@@ -6,7 +6,7 @@ const state = {
 };
 
 const getters = {
-  getList: state => {
+  list: state => {
     return state.data;
   }
 };
