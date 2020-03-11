@@ -8,6 +8,9 @@
           v-model="item"
           item-text="text"
           item-value="value"
+          @click="click"
+          @change="change"
+          @input="input"
         ></v-select>
       </v-col>
     </v-row>
@@ -107,7 +110,19 @@ export default {
     }
   },
   methods: {
-    test() {}
+    click(value) {
+      console.log("click", this.item, value);
+    },
+    change(value) {
+      console.log("change", this.item, value);
+      alert("stop");
+      if (value === 1) {
+        this.item = 3;
+      }
+    },
+    input(value) {
+      console.log("input", this.item, value);
+    }
   },
   created() {
     this.headers = headers;
