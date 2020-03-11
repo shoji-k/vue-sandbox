@@ -1,5 +1,6 @@
 <template>
   <div>
+    <v-btn text :to="{ name: 'Form' }">Form</v-btn>
     <Announces />
     <div v-if="logined">
       <v-btn :to="{ name: 'AnnounceForm' }">Add</v-btn>
