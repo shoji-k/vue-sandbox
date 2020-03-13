@@ -21,6 +21,11 @@ const routes = [
     component: () => import("@/components/organisms/Announces/Form")
   },
   {
+    path: "/editor",
+    name: "Editor",
+    component: () => import("@/components/pages/Editor")
+  },
+  {
     path: "/form",
     name: "Form",
     component: () => import("@/components/pages/Form")
