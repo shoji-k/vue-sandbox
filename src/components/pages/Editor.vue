@@ -52,38 +52,17 @@
         />
       </v-col>
     </v-row>
-    <v-row justify="center">
-      <v-btn color="primary" @click.stop="dialog = true">
-        Open Dialog
-      </v-btn>
-
-      <v-dialog v-model="dialog" max-width="290">
-        <v-card>
-          <v-card-title class="headline">Comfirmantion</v-card-title>
-
-          <v-card-text>
-            <p>Your input is not saved!</p>
-            <p>Do you really want to discard them?</p>
-          </v-card-text>
-
-          <v-card-actions>
-            <v-spacer></v-spacer>
-            <v-btn color="secondary" text @click="discard">
-              Yes
-            </v-btn>
-            <v-btn color="success" text @click="loadBack">
-              No
-            </v-btn>
-          </v-card-actions>
-        </v-card>
-      </v-dialog>
-    </v-row>
+    <DiscardDialog ref="discardDialog" :yes="discardInputs" :no="loadBack" />
   </v-container>
 </template>
 
 <script>
+import DiscardDialog from "@/components/organisms/Editor/DiscardDialog";
+
 export default {
-  components: {},
+  components: {
+    DiscardDialog
+  },
   data: () => ({
     dialog: false,
 
@@ -169,10 +148,9 @@ export default {
         .filter(l => l.version === this.previousVersion)
         .some(l => l.text !== l.savedText);
     },
-    changeVersion(value) {
-      console.log(value);
+    changeVersion() {
       if (this.hasDirtyLine()) {
-        this.openDiscardDialog();
+        this.$refs.discardDialog.open();
       } else {
         this.previousVersion = this.version;
       }
@@ -187,18 +165,10 @@ export default {
         }
         return l;
       });
-    },
 
-    openDiscardDialog() {
-      this.dialog = true;
-    },
-    discard() {
-      this.dialog = false;
-      this.discardInputs();
       this.previousVersion = this.version;
     },
     loadBack() {
-      this.dialog = false;
       this.version = this.previousVersion;
     }
   },
