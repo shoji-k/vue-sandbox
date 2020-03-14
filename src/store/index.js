@@ -1,6 +1,5 @@
 import Vue from "vue";
 import Vuex from "vuex";
-// TODO: load automatically
 import announce from "./modules/announce";
 import announces from "./modules/announces";
 import session from "./modules/session";
@@ -11,9 +10,9 @@ const debug = process.env.NODE_ENV !== "production";
 
 const store = new Vuex.Store({
   modules: {
-    announce: announce,
-    announces: announces,
-    session: session
+    announce,
+    announces,
+    session
   },
   strict: debug
 });
