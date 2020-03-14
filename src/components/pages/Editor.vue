@@ -22,7 +22,9 @@
           outlined
           full-width
           dense
-          :background-color="translated(line) ? '' : 'red lighten-4'"
+          :background-color="
+            line.translatedStatus === 'translated' ? '' : 'red lighten-4'
+          "
           v-model="line.text"
           @blur="checkTranslated(line)"
         />
@@ -41,10 +43,18 @@
         />
       </v-col>
     </v-row>
+    <v-row>
+      <v-col cols="2">
+        <v-btn color="primary" @click="save">Save</v-btn>
+      </v-col>
+      <v-col cols="2">
+        <v-btn color="secondary" @click="translate">Translate</v-btn>
+      </v-col>
+    </v-row>
     <DiscardDialog
       ref="discardDialog"
       :yes="discardInputs"
-      :no="loadBack"
+      :no="versionBack"
       :hideButton="true"
     />
   </v-container>
@@ -74,7 +84,8 @@ export default {
         text: "Hey",
         savedText: "Hey",
         translated: "へい",
-        translated_status: "translated"
+        translatedStatus: "translated",
+        savedTranslatedStatus: "translated"
       },
       {
         id: 2,
@@ -82,7 +93,8 @@ export default {
         text: "Yoo",
         savedText: "Yo",
         translated: "よ",
-        translated_status: "not_translated"
+        translatedStatus: "not_translated",
+        savedTranslatedStatus: "not_translated"
       },
       {
         id: 3,
@@ -90,7 +102,8 @@ export default {
         text: "Men",
         savedText: "Men",
         translated: "めん",
-        translated_status: "translated"
+        translatedStatus: "translated",
+        savedTranslatedStatus: "translated"
       },
       {
         id: 4,
@@ -98,7 +111,8 @@ export default {
         text: "Foo",
         savedText: "Foo",
         translated: "フー",
-        translated_status: "translated"
+        translatedStatus: "translated",
+        savedTranslatedStatus: "translated"
       }
     ]
   }),
@@ -108,29 +122,43 @@ export default {
     }
   },
   methods: {
-    translated(line) {
-      return line.translated_status === "translated";
+    save() {
+      this.allLines = this.allLines.map(l => {
+        if (l.version === this.version) {
+          return {
+            ...l,
+            savedText: l.text,
+            savedTranslatedStatus: l.translatedStatus
+          };
+        }
+        return l;
+      });
+    },
+    translate() {
+      this.allLines = this.allLines.map(l => {
+        if (l.version === this.version) {
+          return {
+            ...l,
+            translatedStatus: "translated"
+          };
+        }
+        return l;
+      });
     },
     checkTranslated(one) {
       let newStatus = null;
-      if (
-        one.text !== one.savedText &&
-        one.translated_status === "translated"
-      ) {
+      if (one.text !== one.savedText && one.translatedStatus === "translated") {
         newStatus = "not_translated";
       }
-      if (
-        one.text === one.savedText &&
-        one.translated_status === "not_translated"
-      ) {
-        newStatus = "translated";
+      if (one.text === one.savedText) {
+        newStatus = one.savedTranslatedStatus;
       }
       if (newStatus) {
         this.allLines = this.allLines.map(l => {
           if (l.id === one.id) {
             return {
               ...l,
-              translated_status: newStatus
+              translatedStatus: newStatus
             };
           }
           return l;
@@ -162,7 +190,7 @@ export default {
 
       this.previousVersion = this.version;
     },
-    loadBack() {
+    versionBack() {
       this.version = this.previousVersion;
     }
   },
