@@ -33,9 +33,9 @@ export default {
     save() {
       if (this.$refs.form.validate()) {
         if (this.form.id) {
-          this.$store.dispatch("announces/update", this.form);
+          this.$store.dispatch("announce/update", this.form);
         } else {
-          this.$store.dispatch("announces/create", this.form);
+          this.$store.dispatch("announce/create", this.form);
         }
         this.$router.push({ name: "Home" });
       }

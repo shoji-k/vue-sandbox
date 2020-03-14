@@ -25,6 +25,14 @@ const actions = {
   },
   clear({ commit }) {
     commit("clear");
+  },
+  create({ dispatch, commit }, { text }) {
+    dispatch("announces/create", { text }, { root: true });
+    commit("clear");
+  },
+  update({ dispatch, commit }, { id, text }) {
+    dispatch("announces/update", { id, text }, { root: true });
+    commit("clear");
   }
 };
 
