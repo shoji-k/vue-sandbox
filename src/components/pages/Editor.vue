@@ -8,7 +8,7 @@
           v-model="version"
           item-text="text"
           item-value="value"
-          @change="change"
+          @change="changeVersion"
         ></v-select>
       </v-col>
     </v-row>
@@ -52,6 +52,32 @@
         />
       </v-col>
     </v-row>
+    <v-row justify="center">
+      <v-btn color="primary" @click.stop="dialog = true">
+        Open Dialog
+      </v-btn>
+
+      <v-dialog v-model="dialog" max-width="290">
+        <v-card>
+          <v-card-title class="headline">Comfirmantion</v-card-title>
+
+          <v-card-text>
+            <p>Your input is not saved!</p>
+            <p>Do you really want to discard them?</p>
+          </v-card-text>
+
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn color="secondary" text @click="discard">
+              Yes
+            </v-btn>
+            <v-btn color="success" text @click="loadBack">
+              No
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+    </v-row>
   </v-container>
 </template>
 
@@ -59,7 +85,10 @@
 export default {
   components: {},
   data: () => ({
+    dialog: false,
+
     version: 3,
+    previousVersion: 3,
     versions: [
       { value: 1, text: "1" },
       { value: 2, text: "2" },
@@ -89,6 +118,14 @@ export default {
         savedText: "Men",
         translated: "めん",
         translated_status: "translated"
+      },
+      {
+        id: 4,
+        version: 3,
+        text: "Foo",
+        savedText: "Foo",
+        translated: "フー",
+        translated_status: "translated"
       }
     ]
   }),
@@ -98,12 +135,6 @@ export default {
     }
   },
   methods: {
-    change(value) {
-      console.log("change", this.item, value);
-      // if (value === 1) {
-      //   this.item = 3;
-      // }
-    },
     translated(line) {
       return line.translated_status === "translated";
     },
@@ -132,6 +163,43 @@ export default {
           return l;
         });
       }
+    },
+    hasDirtyLine() {
+      return this.allLines
+        .filter(l => l.version === this.previousVersion)
+        .some(l => l.text !== l.savedText);
+    },
+    changeVersion(value) {
+      console.log(value);
+      if (this.hasDirtyLine()) {
+        this.openDiscardDialog();
+      } else {
+        this.previousVersion = this.version;
+      }
+    },
+    discardInputs() {
+      this.allLines = this.allLines.map(l => {
+        if (l.version === this.previousVersion) {
+          return {
+            ...l,
+            text: l.savedText
+          };
+        }
+        return l;
+      });
+    },
+
+    openDiscardDialog() {
+      this.dialog = true;
+    },
+    discard() {
+      this.dialog = false;
+      this.discardInputs();
+      this.previousVersion = this.version;
+    },
+    loadBack() {
+      this.dialog = false;
+      this.version = this.previousVersion;
     }
   },
   created() {}
