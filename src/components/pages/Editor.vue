@@ -25,9 +25,31 @@
         <v-btn @click="version = 3">Choose version 3</v-btn>
       </v-col>
     </v-row>
-    <v-row>
+    <v-row v-for="line in lines" :key="line.id">
       <v-col>
-        Editor
+        <v-textarea
+          rows="1"
+          flat
+          light
+          auto-grow
+          outlined
+          full-width
+          dense
+          v-model="line.text"
+        />
+      </v-col>
+      <v-col>
+        <v-textarea
+          rows="1"
+          flat
+          light
+          auto-grow
+          outlined
+          full-width
+          dense
+          readonly
+          v-model="line.translated"
+        />
       </v-col>
     </v-row>
   </v-container>
