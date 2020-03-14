@@ -5,11 +5,7 @@ const defaultValue = {
 };
 
 const state = {
-  data: {
-    id: null,
-    text: "",
-    icon: "mdi-check-outline"
-  }
+  data: { ...defaultValue }
 };
 
 const getters = {

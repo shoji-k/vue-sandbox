@@ -9,7 +9,6 @@
       required
       class="py-2"
     ></v-text-field>
-
     <v-btn :disabled="!valid" color="success" class="mr-4" @click="save">
       Save
     </v-btn>
