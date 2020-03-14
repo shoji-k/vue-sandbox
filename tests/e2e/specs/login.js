@@ -9,7 +9,9 @@ describe("Login", () => {
 
     cy.get("input[name=name]").type(name);
     cy.get("input[name=password]").type(password);
-    cy.get("button").contains("Login").click();
+    cy.get("button")
+      .contains("Login")
+      .click();
 
     cy.get("span").contains("Add");
     cy.get("span").not("Login");
