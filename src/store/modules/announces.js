@@ -1,5 +1,5 @@
 const state = {
-  data: [
+  list: [
     { id: 1, text: "Just do it", icon: "mdi-check-outline" },
     { id: 2, text: "You Just do it", icon: "mdi-check-outline" }
   ]
@@ -7,22 +7,36 @@ const state = {
 
 const getters = {
   list: state => {
-    return state.data;
+    return state.list;
+  },
+  one: state => id => {
+    return state.list.find(one => one.id === id);
   }
 };
 
 const actions = {
-  async create({ commit }, text) {
+  create({ commit }, { text }) {
     commit("create", text);
+  },
+  update({ commit }, { id, text }) {
+    commit("update", { id, text });
   }
 };
 
 const mutations = {
   create(state, text) {
-    const maxId = state.data.reduce((a, b) => {
+    const maxId = state.list.reduce((a, b) => {
       return Math.max(a.id, b.id);
     });
-    state.data.push({ id: maxId + 1, text: text, icon: "mdi-check-outline" });
+    state.list.push({ id: maxId + 1, text: text, icon: "mdi-check-outline" });
+  },
+  update(state, { id, text }) {
+    state.list = state.list.map(one => {
+      if (one.id === id) {
+        return { ...one, text: text };
+      }
+      return one;
+    });
   }
 };
 
