@@ -12,17 +12,6 @@
         ></v-select>
       </v-col>
     </v-row>
-    <v-row>
-      <v-col cols="1">
-        <v-btn @click="version = 1">Choose version 1</v-btn>
-      </v-col>
-      <v-col cols="1">
-        <v-btn @click="version = 2">Choose version 2</v-btn>
-      </v-col>
-      <v-col cols="1">
-        <v-btn @click="version = 3">Choose version 3</v-btn>
-      </v-col>
-    </v-row>
     <v-row v-for="line in lines" :key="line.id">
       <v-col>
         <v-textarea
