@@ -25,7 +25,7 @@
           :background-color="
             line.translatedStatus === 'translated' ? '' : 'red lighten-4'
           "
-          v-model="line.text"
+          v-model.lazy="line.text"
           @blur="checkTranslated(line)"
         />
       </v-col>
