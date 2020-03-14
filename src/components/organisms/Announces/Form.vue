@@ -16,14 +16,15 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   data: () => ({
-    valid: true,
-    form: {
-      id: null,
-      text: ""
-    }
+    valid: true
   }),
+  computed: {
+    ...mapGetters({ form: "announce/data" })
+  },
   methods: {
     save() {
       if (this.$refs.form.validate()) {
@@ -44,10 +45,9 @@ export default {
 
     const id = parseInt(this.$route.params.id, 10);
     if (id) {
-      const one = this.$store.getters["announces/one"](id);
-      this.form = { id: one.id, text: one.text };
+      this.$store.dispatch("announce/get", { id });
     } else {
-      this.form = { id: null, text: "" };
+      this.$store.dispatch("announce/clear");
     }
   }
 };
