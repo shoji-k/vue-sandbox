@@ -41,7 +41,12 @@
         />
       </v-col>
     </v-row>
-    <DiscardDialog ref="discardDialog" :yes="discardInputs" :no="loadBack" />
+    <DiscardDialog
+      ref="discardDialog"
+      :yes="discardInputs"
+      :no="loadBack"
+      :hideButton="true"
+    />
   </v-container>
 </template>
 
