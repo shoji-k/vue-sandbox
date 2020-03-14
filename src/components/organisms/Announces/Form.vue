@@ -1,7 +1,8 @@
 <template>
   <v-form ref="form" v-model="valid" lazy-validation>
     <v-text-field
-      v-model="form.text"
+      :value="form.text"
+      @input="inputText"
       :counter="100"
       :rules="announceRules"
       label="Announce"
@@ -26,6 +27,9 @@ export default {
     ...mapGetters({ form: "announce/data" })
   },
   methods: {
+    inputText(value) {
+      this.$store.commit("announce/inputText", value);
+    },
     save() {
       if (this.$refs.form.validate()) {
         if (this.form.id) {

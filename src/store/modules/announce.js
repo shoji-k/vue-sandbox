@@ -30,7 +30,10 @@ const actions = {
 
 const mutations = {
   set(state, data) {
-    state.data = data
+    state.data = data;
+  },
+  inputText(state, value) {
+    state.data.text = value;
   },
   clear(state) {
     state.data = { ...defaultValue };
