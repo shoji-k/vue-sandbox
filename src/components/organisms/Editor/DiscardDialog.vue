@@ -54,10 +54,12 @@ export default {
       default: false
     },
     yes: {
-      type: Function
+      type: Function,
+      default: () => {}
     },
     no: {
-      type: Function
+      type: Function,
+      default: () => {}
     }
   },
   data: () => ({
