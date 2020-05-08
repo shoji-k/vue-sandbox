@@ -3,9 +3,9 @@
     <v-row>
       <v-col>
         <v-select
+          v-model="item"
           label="Selection"
           :items="items"
-          v-model="item"
           item-text="text"
           item-value="value"
           @click="click"
@@ -115,6 +115,9 @@ export default {
       return this.desserts;
     }
   },
+  created() {
+    this.headers = headers;
+  },
   methods: {
     click(value) {
       console.log("click", this.item, value);
@@ -129,9 +132,6 @@ export default {
     input(value) {
       console.log("input", this.item, value);
     }
-  },
-  created() {
-    this.headers = headers;
   }
 };
 </script>

@@ -6,12 +6,12 @@
   >
     <v-text-field
       :value="form.text"
-      @input="inputText"
       :counter="100"
       :rules="announceRules"
       label="Announce"
       required
       class="py-2"
+      @input="inputText"
     />
     <v-btn
       :disabled="!valid"
@@ -34,6 +34,19 @@ export default {
   computed: {
     ...mapGetters({ form: "announce/data" })
   },
+  created() {
+    this.announceRules = [
+      v => !!v || "Announce is required",
+      v => (v && v.length <= 100) || "Announce must be less than 100 characters"
+    ];
+
+    const id = parseInt(this.$route.params.id, 10);
+    if (id) {
+      this.$store.dispatch("announce/get", { id });
+    } else {
+      this.$store.dispatch("announce/clear");
+    }
+  },
   methods: {
     inputText(value) {
       this.$store.commit("announce/inputText", value);
@@ -47,19 +60,6 @@ export default {
         }
         this.$router.push({ name: "Home" });
       }
-    }
-  },
-  created() {
-    this.announceRules = [
-      v => !!v || "Announce is required",
-      v => (v && v.length <= 100) || "Announce must be less than 100 characters"
-    ];
-
-    const id = parseInt(this.$route.params.id, 10);
-    if (id) {
-      this.$store.dispatch("announce/get", { id });
-    } else {
-      this.$store.dispatch("announce/clear");
     }
   }
 };

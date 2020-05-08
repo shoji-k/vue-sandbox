@@ -3,9 +3,9 @@
     <v-row>
       <v-col>
         <v-select
+          v-model="version"
           label="version"
           :items="versions"
-          v-model="version"
           item-text="text"
           item-value="value"
           @change="changeVersion"
@@ -18,6 +18,7 @@
     >
       <v-col>
         <v-textarea
+          v-model.lazy="line.text"
           rows="1"
           flat
           light
@@ -28,12 +29,12 @@
           :background-color="
             line.translatedStatus === 'translated' ? '' : 'red lighten-4'
           "
-          v-model.lazy="line.text"
           @blur="checkTranslated(line)"
         />
       </v-col>
       <v-col>
         <v-textarea
+          v-model="line.translated"
           rows="1"
           flat
           light
@@ -42,7 +43,6 @@
           full-width
           dense
           readonly
-          v-model="line.translated"
         />
       </v-col>
     </v-row>
@@ -134,6 +134,7 @@ export default {
       return this.allLines.filter(l => l.version === this.version);
     }
   },
+  created() {},
   methods: {
     save() {
       this.allLines = this.allLines.map(l => {
@@ -206,7 +207,6 @@ export default {
     versionBack() {
       this.version = this.previousVersion;
     }
-  },
-  created() {}
+  }
 };
 </script>

@@ -21,8 +21,8 @@
       </v-icon>
     </div>
     <v-btn
-      text
       v-else
+      text
       :to="{ name: 'Login' }"
     >
       Login

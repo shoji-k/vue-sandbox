@@ -51,6 +51,10 @@ export default {
     name: "",
     password: ""
   }),
+  created() {
+    this.nameRule = [v => !!v || "name is required"];
+    this.passwordRule = [v => !!v || "password is required"];
+  },
   methods: {
     login() {
       if (this.$refs.form.validate()) {
@@ -61,10 +65,6 @@ export default {
         this.$router.push({ name: "Home" });
       }
     }
-  },
-  created() {
-    this.nameRule = [v => !!v || "name is required"];
-    this.passwordRule = [v => !!v || "password is required"];
   }
 };
 </script>
