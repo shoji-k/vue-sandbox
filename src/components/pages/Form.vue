@@ -11,18 +11,24 @@
           @click="click"
           @change="change"
           @input="input"
-        ></v-select>
+        />
       </v-col>
     </v-row>
     <v-row>
       <v-col cols="1">
-        <v-btn @click="item = 1">Choose Hey</v-btn>
+        <v-btn @click="item = 1">
+          Choose Hey
+        </v-btn>
       </v-col>
       <v-col cols="1">
-        <v-btn @click="item = 2">Choose Yo</v-btn>
+        <v-btn @click="item = 2">
+          Choose Yo
+        </v-btn>
       </v-col>
       <v-col cols="1">
-        <v-btn @click="item = 3">Choose Men</v-btn>
+        <v-btn @click="item = 3">
+          Choose Men
+        </v-btn>
       </v-col>
     </v-row>
     <v-row>
@@ -32,7 +38,7 @@
           :items="list"
           :items-per-page="5"
           class="elevation-1"
-        ></v-data-table>
+        />
       </v-col>
     </v-row>
   </v-container>

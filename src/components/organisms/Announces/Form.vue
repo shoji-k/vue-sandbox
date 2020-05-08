@@ -1,5 +1,9 @@
 <template>
-  <v-form ref="form" v-model="valid" lazy-validation>
+  <v-form
+    ref="form"
+    v-model="valid"
+    lazy-validation
+  >
     <v-text-field
       :value="form.text"
       @input="inputText"
@@ -8,8 +12,13 @@
       label="Announce"
       required
       class="py-2"
-    ></v-text-field>
-    <v-btn :disabled="!valid" color="success" class="mr-4" @click="save">
+    />
+    <v-btn
+      :disabled="!valid"
+      color="success"
+      class="mr-4"
+      @click="save"
+    >
       Save
     </v-btn>
   </v-form>

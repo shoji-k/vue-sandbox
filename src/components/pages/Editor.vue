@@ -9,10 +9,13 @@
           item-text="text"
           item-value="value"
           @change="changeVersion"
-        ></v-select>
+        />
       </v-col>
     </v-row>
-    <v-row v-for="line in lines" :key="line.id">
+    <v-row
+      v-for="line in lines"
+      :key="line.id"
+    >
       <v-col>
         <v-textarea
           rows="1"
@@ -45,17 +48,27 @@
     </v-row>
     <v-row>
       <v-col cols="2">
-        <v-btn color="primary" @click="save">Save</v-btn>
+        <v-btn
+          color="primary"
+          @click="save"
+        >
+          Save
+        </v-btn>
       </v-col>
       <v-col cols="2">
-        <v-btn color="secondary" @click="translate">Translate</v-btn>
+        <v-btn
+          color="secondary"
+          @click="translate"
+        >
+          Translate
+        </v-btn>
       </v-col>
     </v-row>
     <DiscardDialog
       ref="discardDialog"
       :yes="discardInputs"
       :no="versionBack"
-      :hideButton="true"
+      :hide-button="true"
     />
   </v-container>
 </template>
