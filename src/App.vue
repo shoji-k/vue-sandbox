@@ -2,10 +2,7 @@
   <v-app>
     <Header />
     <v-content>
-      <v-container
-        fluid
-        class="pa-6"
-      >
+      <v-container fluid class="pa-6">
         <router-view />
       </v-container>
     </v-content>
