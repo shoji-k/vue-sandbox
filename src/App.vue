@@ -2,7 +2,10 @@
   <v-app>
     <Header />
     <v-content>
-      <v-container fluid class="pa-6">
+      <v-container
+        fluid
+        class="pa-6"
+      >
         <router-view />
       </v-container>
     </v-content>
@@ -15,10 +18,10 @@ import { mapGetters } from "vuex";
 
 export default {
   components: {
-    Header
+    Header,
   },
   computed: {
-    ...mapGetters({ name: "session/name" })
-  }
+    ...mapGetters({ name: "session/name" }),
+  },
 };
 </script>
