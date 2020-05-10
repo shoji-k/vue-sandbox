@@ -1,6 +1,15 @@
+const path = require("path");
+
 module.exports = {
   devServer: {
-    disableHostCheck: true
+    disableHostCheck: true,
   },
-  transpileDependencies: ["vuetify"]
+  transpileDependencies: ["vuetify"],
+  configureWebpack: {
+    resolve: {
+      alias: {
+        "@": path.resolve(__dirname, "src/"),
+      },
+    },
+  },
 };
