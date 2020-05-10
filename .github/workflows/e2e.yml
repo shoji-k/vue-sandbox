@@ -12,3 +12,6 @@ jobs:
         uses: cypress-io/github-action@v1
         with:
           start: npm run serve
+          wait-on: http://localhost:8080
+          # wait for 2 minutes for the server to respond
+          wait-on-timeout: 120
