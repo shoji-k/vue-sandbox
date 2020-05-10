@@ -1,14 +1,12 @@
 module.exports = {
   root: true,
   env: {
-    node: true
+    node: true,
   },
-  extends: ["plugin:vue/recommended", "eslint:recommended"],
-  parserOptions: {
-    parser: "babel-eslint"
-  },
+  extends: ["eslint:recommended", "plugin:vue/recommended"],
+  plugins: ["vue"],
   rules: {
     "no-console": process.env.NODE_ENV === "production" ? "error" : "off",
-    "no-debugger": process.env.NODE_ENV === "production" ? "error" : "off"
-  }
+    "no-debugger": process.env.NODE_ENV === "production" ? "error" : "off",
+  },
 };
