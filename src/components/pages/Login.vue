@@ -1,7 +1,11 @@
 <template>
   <v-card tile>
     <v-container class="pa-6">
-      <v-form ref="form" v-model="valid" lazy-validation>
+      <v-form
+        ref="form"
+        v-model="valid"
+        lazy-validation
+      >
         <v-row>
           <v-col>
             <v-text-field
@@ -10,7 +14,7 @@
               label="Name"
               name="name"
               required
-            ></v-text-field>
+            />
           </v-col>
         </v-row>
         <v-row>
@@ -21,12 +25,16 @@
               label="Password"
               name="password"
               required
-            ></v-text-field>
+            />
           </v-col>
         </v-row>
         <v-row>
           <v-col>
-            <v-btn :disabled="!valid" color="success" @click="login">
+            <v-btn
+              :disabled="!valid"
+              color="success"
+              @click="login"
+            >
               Login
             </v-btn>
           </v-col>
@@ -43,6 +51,10 @@ export default {
     name: "",
     password: ""
   }),
+  created() {
+    this.nameRule = [v => !!v || "name is required"];
+    this.passwordRule = [v => !!v || "password is required"];
+  },
   methods: {
     login() {
       if (this.$refs.form.validate()) {
@@ -53,10 +65,6 @@ export default {
         this.$router.push({ name: "Home" });
       }
     }
-  },
-  created() {
-    this.nameRule = [v => !!v || "name is required"];
-    this.passwordRule = [v => !!v || "password is required"];
   }
 };
 </script>

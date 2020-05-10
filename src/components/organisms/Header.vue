@@ -1,19 +1,37 @@
 <template>
-  <v-app-bar app color="primary" dark>
+  <v-app-bar
+    app
+    color="primary"
+    dark
+  >
     <div class="headline">
-      <v-btn text :to="{ name: 'Home' }">
+      <v-btn
+        text
+        :to="{ name: 'Home' }"
+      >
         Vue sandbox
       </v-btn>
     </div>
 
-    <v-spacer></v-spacer>
+    <v-spacer />
 
     <div v-if="logined">
-      {{ name }} <v-icon @click="logout">mdi-logout</v-icon>
+      {{ name }} <v-icon @click="logout">
+        mdi-logout
+      </v-icon>
     </div>
-    <v-btn text v-else :to="{ name: 'Login' }">Login</v-btn>
+    <v-btn
+      v-else
+      text
+      :to="{ name: 'Login' }"
+    >
+      Login
+    </v-btn>
 
-    <v-btn text :to="{ name: 'About' }">
+    <v-btn
+      text
+      :to="{ name: 'About' }"
+    >
       About
     </v-btn>
   </v-app-bar>

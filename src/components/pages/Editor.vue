@@ -3,18 +3,22 @@
     <v-row>
       <v-col>
         <v-select
+          v-model="version"
           label="version"
           :items="versions"
-          v-model="version"
           item-text="text"
           item-value="value"
           @change="changeVersion"
-        ></v-select>
+        />
       </v-col>
     </v-row>
-    <v-row v-for="line in lines" :key="line.id">
+    <v-row
+      v-for="line in lines"
+      :key="line.id"
+    >
       <v-col>
         <v-textarea
+          v-model.lazy="line.text"
           rows="1"
           flat
           light
@@ -25,12 +29,12 @@
           :background-color="
             line.translatedStatus === 'translated' ? '' : 'red lighten-4'
           "
-          v-model.lazy="line.text"
           @blur="checkTranslated(line)"
         />
       </v-col>
       <v-col>
         <v-textarea
+          v-model="line.translated"
           rows="1"
           flat
           light
@@ -39,23 +43,32 @@
           full-width
           dense
           readonly
-          v-model="line.translated"
         />
       </v-col>
     </v-row>
     <v-row>
       <v-col cols="2">
-        <v-btn color="primary" @click="save">Save</v-btn>
+        <v-btn
+          color="primary"
+          @click="save"
+        >
+          Save
+        </v-btn>
       </v-col>
       <v-col cols="2">
-        <v-btn color="secondary" @click="translate">Translate</v-btn>
+        <v-btn
+          color="secondary"
+          @click="translate"
+        >
+          Translate
+        </v-btn>
       </v-col>
     </v-row>
     <DiscardDialog
       ref="discardDialog"
       :yes="discardInputs"
       :no="versionBack"
-      :hideButton="true"
+      :hide-button="true"
     />
   </v-container>
 </template>
@@ -121,6 +134,7 @@ export default {
       return this.allLines.filter(l => l.version === this.version);
     }
   },
+  created() {},
   methods: {
     save() {
       this.allLines = this.allLines.map(l => {
@@ -193,7 +207,6 @@ export default {
     versionBack() {
       this.version = this.previousVersion;
     }
-  },
-  created() {}
+  }
 };
 </script>
