@@ -5,7 +5,7 @@
   >
     <template
       v-if="!hideButton"
-      v-slot:activator="{ on }"
+      #activator="{ on }"
     >
       <v-btn
         color="primary"
